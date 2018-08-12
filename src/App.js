@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers/reducerCounter';
+import reducer from './reducers';
 
 //components
 import Counter from './components/Counter';
-// import Barca from './components/Barca';
+import Barca from './components/Barca';
+import Real from './components/Real';
 
 
 // CSS and the rest
@@ -17,11 +18,7 @@ import bootstrap_logo from './bootstrap-stack.png';
 
 import './App.css';
 
-const store = createStore(reducer, {
-  counterBarca: 0,
-  counterReal: 0
- });
-
+const store = createStore(reducer);
 
 class App extends Component {
   render() {
@@ -31,9 +28,19 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <main className="App-main relative">
+        <img src={redux_logo} className="bg-img bg-redux" alt="redux" />
+        <img src={react_logo} className="bg-img bg-react" alt="react" />
+          <p>
+          Simple Counter App. Click on the favourite team logo to set the final score(<i>App will be imporooved soon</i>).
+          </p>
           <Provider store={store}>
           <div>
             <Counter />
+            <div className="row table-row">
+              <h2>Teams</h2>
+              <Barca />
+              <Real />
+            </div>
           </div>
           </Provider>
         </main>
@@ -41,7 +48,7 @@ class App extends Component {
         <footer>
           <div className="container text-center">
             <p>
-              iVideos was created only for an educational purposes. Application uses the YouTube API and it is written in <b>ReactJS</b> with <b>Bootstrap</b>.
+              iCounter was created only for an educational purposes. Application is written in <b>Redux</b>, <b>ReactJS</b> with <b>Bootstrap</b>.
             </p>
             <div>
             <img src={redux_logo} className="App-logo" alt="Redux" />

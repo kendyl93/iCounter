@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class Barca extends Component{
+class Real extends Component{
   renderList(){
     return this.props.players.map((player) => {
       return(
@@ -19,7 +19,7 @@ class Barca extends Component{
           <thead>
             <tr>
               <th className="text-center">
-                FC Barcelona
+                Real Madrit
               </th>
             </tr>
           </thead>
@@ -34,9 +34,9 @@ class Barca extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    players: state.reducerBarca
+    players: state.reducerReal
    };
 };
 
 
-export default connect(mapStateToProps)(Barca);
+export default connect(mapStateToProps)(Real);

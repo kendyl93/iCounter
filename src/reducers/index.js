@@ -1,10 +1,13 @@
 import {combineReducers} from 'redux';
-import reducerBarca from './reducerBarca'
 import reducerCounter from './reducerCounter'
+import reducerBarca from './reducerBarca'
+import reducerReal from './reducerReal'
+
 
 const rootReducer = combineReducers({
-  players: reducerBarca,
-  counter: reducerCounter
+  reducerCounter,
+  reducerBarca,
+  reducerReal,
 });
 
 export default rootReducer;

@@ -41,22 +41,24 @@ class Counter extends Component {
         this.setState({
           real_logo_height: this.state.real_logo_height + (this.state.real_logo_height/50),
           barca_logo_height: this.state.barca_logo_height - (this.state.barca_logo_height/50)
-        });        
+        });
       }
     }
     return (
       <div className="container">
-          <div className="row">
-          <div className="col-sm-5">
-            <img className="teamLogo" height={this.state.barca_logo_height} src={barca_logo} onClick={() => incClickBarca()} alt="team"/>
+          <div className="row table-row">
+          <div className="table-col col-md-5 col-sm-4">
+            <img title="click me" className="teamLogo" height={this.state.barca_logo_height} src={barca_logo} onClick={() => incClickBarca()} alt="team"/>
           </div>
-          <div className="col-sm-2">
-            <span>{counterBarca}</span>
-            <span> : </span>
-            <span>{counterReal}</span>
+          <div className="table-col col-md-2 col-sm-4">
+            <div className="scoreTable">
+              <span>{counterBarca}</span>
+              <span> : </span>
+              <span>{counterReal}</span>
+            </div>
           </div>
-          <div className="col-sm-4">
-            <img className="teamLogo" height={this.state.real_logo_height} src={real_logo} onClick={() => incClickReal()} alt="team"/>
+          <div className="table-col col-md-5 col-sm-4">
+            <img title="click me" className="teamLogo" height={this.state.real_logo_height} src={real_logo} onClick={() => incClickReal()} alt="team"/>
           </div>
           </div>
       </div>
@@ -65,9 +67,10 @@ class Counter extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('mapStateToProps', state.reducerCounter.counterBarca);
   return {
-    counterBarca: state.counterBarca,
-    counterReal: state.counterReal,
+    counterBarca: state.reducerCounter.counterBarca,
+    counterReal: state.reducerCounter.counterReal,
    };
 };
 const mapDispatchToProps = (dispatch) => {
