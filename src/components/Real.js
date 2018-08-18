@@ -2,20 +2,55 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class Real extends Component{
-  renderList(){
-    return this.props.players.map((player) => {
-      return(
-        <tr key={player.name}>
-          <td>{player.name}</td>
-        </tr>
-      );
+  constructor(props){
+    super(props);
+
+    this.state = {
+      //players: this.props.players <-- Stupid thing
+      player: '' //empty to set as an input
+    }
+  }
+
+  // add inputted letters to the local state
+  onChange(e){
+    this.setState({
+      player: e.target.value
     });
+  }
+  renderList(){
+    if (!this.state.player) {
+      return this.props.players.map((player) => {
+        return(
+          <tr key={player.name}>
+          <td>{player.name}</td>
+          </tr>
+        );
+      });
+    }else{
+      return this.props.players.filter(player =>
+        player.name.toLowerCase().includes(this.state.player.toLowerCase())).map(searchedPlayers => {
+          return(
+            <tr key={searchedPlayers.name}>
+              <td>{searchedPlayers.name}</td>
+            </tr>
+          );
+        })
+    }
   }
   render(){
     console.log(this.props.players);
     return(
       <div className="col-sm-6 table-col table-responsive">
         <table className="table table-striped">
+          <div className="input_wrapper">
+            <input
+            className="form-control"
+            type="text"
+            placeholder="Search for player..."
+            value={this.state.player}
+            onChange={this.onChange.bind(this)}
+            />
+          </div>
           <thead>
             <tr>
               <th className="text-center">
